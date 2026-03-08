@@ -1,3 +1,6 @@
+# Code Progress
+1. Initial commit! Just creating the tic tac toe component.
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
