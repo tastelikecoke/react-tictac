@@ -1,5 +1,6 @@
 # Code Progress
-1. Initial commit! Just creating the tic tac toe component. 90 minutes 2026-03-08.
+- Added tic tac toe logic. so confused about CSS grids. 50 minutes 2026-03-08.
+- Initial commit! Just creating the tic tac toe component. 90 minutes 2026-03-08.
 
 # Welcome to React Router!
 

@@ -28,6 +28,15 @@ export default function TicTacToe() {
     setCurrentTurn(!currentTurn)
     let isWin = false
     isWin = isWin || nextState.some(row => row.every(cell => cell == 'X') || row.every(cell => cell == 'O'))
+    for(let x_pos = 0; x_pos < 3; ++x_pos) {
+      let match_x = true
+      let match_o = true
+      for(let y_pos = 0; y_pos < 3; ++y_pos) {
+        match_x = match_x && nextState[y_pos][x_pos] == 'X'
+        match_o = match_o && nextState[y_pos][x_pos] == 'O'
+      }
+      isWin = isWin || match_x || match_o
+    }
     if (isWin)
       setWinner(currentMarker)
   }
