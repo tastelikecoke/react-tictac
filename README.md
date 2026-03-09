@@ -1,4 +1,5 @@
 # Code Progress
+- Added more features and way to detect diagonal wins. 78 minutes 2026-03-09.
 - Added tic tac toe logic. so confused about CSS grids. 50 minutes 2026-03-08.
 - Initial commit! Just creating the tic tac toe component. 90 minutes 2026-03-08.
 
