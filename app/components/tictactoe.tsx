@@ -12,27 +12,31 @@ function Row({handleClick, content}: {handleClick: (x: number) => void, content:
     <Cell handleClick={() => handleClick(2)} content={content[2]} />
   </div>
 }
-function SideInfo() {
-  return <div>
-    
+
+function SideInfo({gameStates, handleChangeState}: {gameStates: any, handleChangeState: (index: number) => void}) {
+  return <div className="side-info">
+    <ol>
+      {
+        gameStates.map((_: any, i: number) => (
+          <li key={i}>
+            <button onClick={() => handleChangeState(i)}>game state {i}</button>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 }
 
 export default function TicTacToe() {
   const initialState = [["","",""],["","",""],["","",""]]
   const [gameState, setGameState] = useState(initialState)
+  const [gameStates, setGameStates] = useState([initialState])
   const [currentTurn, setCurrentTurn] = useState(true)
+  const [stateIndex, setStateIndex] = useState(0)
   const [winner, setWinner] = useState('')
 
-  function handleClickCell(x: number, y: number) {
-    if (winner !== '' || gameState[y][x] !== '') {
-      return
-    }
-    const currentMarker = currentTurn ? 'X' : 'O' 
-    const nextState = gameState.map(
-      (row: string[], y_data) => {return row.map((cell, x_data) => (x === x_data && y === y_data) ? currentMarker : cell)})
-    setGameState(nextState)
-    setCurrentTurn(!currentTurn)
+  function checkWinner(index: number, nextState: string[][]) {
+    const currentMarker = !(index % 2 == 0) ? 'X' : 'O'
     let isWin = false
     isWin = isWin || nextState.some(row => row.every(cell => cell == 'X') || row.every(cell => cell == 'O'))
     for(let x_pos = 0; x_pos < 3; ++x_pos) {
@@ -58,7 +62,30 @@ export default function TicTacToe() {
 
     if (isWin)
       setWinner(currentMarker)
+    else
+      setWinner('')
   }
+  function handleClickCell(x: number, y: number) {
+    if (winner !== '' || gameState[y][x] !== '') {
+      return
+    }
+    const currentMarker = currentTurn ? 'X' : 'O' 
+    const nextState = gameState.map(
+      (row: string[], y_data) => {return row.map((cell, x_data) => (x === x_data && y === y_data) ? currentMarker : cell)})
+    setGameState(nextState)
+    setCurrentTurn(!(stateIndex % 2 == 0))
+    setGameStates(gameStates.slice(0, stateIndex+1).concat([nextState]))
+    setStateIndex(stateIndex + 1)
+    checkWinner(stateIndex + 1, nextState)
+  }
+
+  function handleChangeState(index: number) {
+    setStateIndex(index)
+    setGameState(gameStates[index])
+    setCurrentTurn(index % 2 == 0)
+    checkWinner(index, gameStates[index])
+  }
+
   return <div className="tictac">
       <div className="tictactoe">
       {currentTurn ?
@@ -73,7 +100,7 @@ export default function TicTacToe() {
         <p>{winner} Wins</p>
       }
       </div>
-      <SideInfo className="side-info">
+      <SideInfo gameStates={gameStates} handleChangeState={handleChangeState}>
       </SideInfo>
   </div>
 }
