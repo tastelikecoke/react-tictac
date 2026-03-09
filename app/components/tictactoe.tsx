@@ -12,7 +12,11 @@ function Row({handleClick, content}: {handleClick: (x: number) => void, content:
     <Cell handleClick={() => handleClick(2)} content={content[2]} />
   </div>
 }
-
+function SideInfo() {
+  return <div>
+    
+  </div>
+}
 
 export default function TicTacToe() {
   const initialState = [["","",""],["","",""],["","",""]]
@@ -21,6 +25,9 @@ export default function TicTacToe() {
   const [winner, setWinner] = useState('')
 
   function handleClickCell(x: number, y: number) {
+    if (winner !== '' || gameState[y][x] !== '') {
+      return
+    }
     const currentMarker = currentTurn ? 'X' : 'O' 
     const nextState = gameState.map(
       (row: string[], y_data) => {return row.map((cell, x_data) => (x === x_data && y === y_data) ? currentMarker : cell)})
@@ -37,20 +44,36 @@ export default function TicTacToe() {
       }
       isWin = isWin || match_x || match_o
     }
+    let match_x = true
+    let match_o = true
+    let match_x2 = true
+    let match_o2 = true
+    for(let x_pos = 0; x_pos < 3; ++x_pos) {
+      match_x = match_x && nextState[x_pos][x_pos] == 'X'
+      match_o = match_o && nextState[x_pos][x_pos] == 'O'
+      match_x2 = match_x2 && nextState[x_pos][3-x_pos-1] == 'X'
+      match_o2 = match_o2 && nextState[x_pos][3-x_pos-1] == 'O'
+    }
+    isWin = isWin || match_o || match_x || match_o2 || match_x2
+
     if (isWin)
       setWinner(currentMarker)
   }
-  return <div className="tictactoe">
-    {currentTurn ?
-      <p>X's Turn</p>
-      :
-      <p>O's Turn</p>
-    }
-    <Row handleClick={(x: number) => handleClickCell(x, 0)} content={gameState[0]} />
-    <Row handleClick={(x: number) => handleClickCell(x, 1)} content={gameState[1]} />
-    <Row handleClick={(x: number) => handleClickCell(x, 2)} content={gameState[2]} />
-    {winner != '' &&
-      <p>{winner} Wins</p>
-    }
+  return <div className="tictac">
+      <div className="tictactoe">
+      {currentTurn ?
+        <p>X's Turn</p>
+        :
+        <p>O's Turn</p>
+      }
+      <Row handleClick={(x: number) => handleClickCell(x, 0)} content={gameState[0]} />
+      <Row handleClick={(x: number) => handleClickCell(x, 1)} content={gameState[1]} />
+      <Row handleClick={(x: number) => handleClickCell(x, 2)} content={gameState[2]} />
+      {winner != '' &&
+        <p>{winner} Wins</p>
+      }
+      </div>
+      <SideInfo className="side-info">
+      </SideInfo>
   </div>
 }
