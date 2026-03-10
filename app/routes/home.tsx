@@ -1,5 +1,4 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 import TicTacToe from "../components/tictactoe";
 
 export function meta({}: Route.MetaArgs) {
