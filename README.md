@@ -1,4 +1,6 @@
 # Code Progress
+
+- Make a stopwatch component. 27 minutes. 2026-03-11.
 - Add styling for a new page. CSS. 31 minutes 2026-03-10.
 - Added more features and way to detect diagonal wins. 78 minutes 2026-03-09.
 - Added tic tac toe logic. so confused about CSS grids. 50 minutes 2026-03-08.
