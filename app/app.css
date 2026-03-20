@@ -44,8 +44,17 @@ body {
   padding: 1rem;
 }
 
+
+.quiz {
+  container-name: quiz-container;
+  container-type: inline-size;
+  background-color: white;
+  height: 100vh;
+}
+
 .quiz header {
   position: sticky;
+  top: 0;
   height: 100px;
   background-color: #FA8100;
   line-height: 60px;
@@ -58,7 +67,6 @@ body {
 
 .quiz main {
   padding: 40px;
-  background-color: white;
   font-family: serif;
   font-size: 40px;
   color: black;
@@ -71,9 +79,26 @@ body {
 }
 .quiz .below {
   margin-top: 20px;
-  padding: 20px;
-  color: #FA8100;
-  border: 1px solid #FA8100;
-  font-family: sans-serif;
-  font-weight: 100;
+  margin-bottom: 20px;
+  position: fixed;
+  bottom: 0px;
+  width: calc(100% - 80px);
+  padding: 0px;
+  button {
+    padding: 20px;
+    color: #FA8100;
+    border: 1px solid #FA8100;
+    font-family: sans-serif;
+    font-weight: 100;
+  }
+}
+@container quiz-container (width > 600px) {
+  .quiz .below {
+    text-align: center;
+  }
+}
+@container quiz-container (width < 600px) {
+  .quiz .below {
+    text-align: right;
+  }
 }
