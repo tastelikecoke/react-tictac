@@ -57,8 +57,8 @@ export default function Quiz() {
           {choice}
         </div>
       )}
-      <div className="below" onClick={submitHandler}>
-        <button>{ quizState === "question" ? "Submit" : "Next"}</button>
+      <div className="below">
+        <button onClick={submitHandler}>{ quizState === "question" ? "Submit" : "Next"}</button>
       </div>
     </main>
   </div>

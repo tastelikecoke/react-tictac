@@ -49,7 +49,7 @@ body {
   container-name: quiz-container;
   container-type: inline-size;
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .quiz header {
@@ -106,13 +106,15 @@ body {
 }
 
 .quiz .below {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   position: fixed;
   bottom: 0px;
   width: calc(100% - 80px);
+  background-color: white;
   padding: 0px;
   button {
+    margin-bottom: 20px;
     padding: 20px;
     color: #FA8100;
     border: 1px solid #FA8100;
