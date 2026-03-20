@@ -1,5 +1,5 @@
 # Code Progress
-
+- Add quiz. 4 hours i guess? 2026-03-21
 - Make a stopwatch component. 27 minutes. 2026-03-11.
 - Add styling for a new page. CSS. 31 minutes 2026-03-10.
 - Added more features and way to detect diagonal wins. 78 minutes 2026-03-09.
