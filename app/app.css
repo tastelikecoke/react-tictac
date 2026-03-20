@@ -43,3 +43,37 @@ body {
 .description {
   padding: 1rem;
 }
+
+.quiz header {
+  position: sticky;
+  height: 100px;
+  background-color: #FA8100;
+  line-height: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.quiz main {
+  padding: 40px;
+  background-color: white;
+  font-family: serif;
+  font-size: 40px;
+  color: black;
+}
+
+.quiz .choice {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid black;
+}
+.quiz .below {
+  margin-top: 20px;
+  padding: 20px;
+  color: #FA8100;
+  border: 1px solid #FA8100;
+  font-family: sans-serif;
+  font-weight: 100;
+}
