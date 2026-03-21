@@ -32,7 +32,11 @@ export default function Quiz() {
       setQuizState("answer")
     }
     else if (quizState === "answer") {
+      if (selected === question.answer) {
+        setScore(score + 1)
+      }
       if (questions.length <= qIndex + 1) {
+        setQIndex(qIndex + 1)
         setQuizState("finished")
         setSelected('')
       }
@@ -49,7 +53,7 @@ export default function Quiz() {
       setSelected(choice)
     }
   }
-  function resetHandler(choice: string) {
+  function resetHandler() {
     setQIndex(0)
     setQuizState("question")
     setSelected('')
@@ -58,13 +62,22 @@ export default function Quiz() {
 
   return <div className="quiz">
     <header>
-      <span className="header-text">Quiz</span>
+      <section className="top">
+        <span className="header-text">Quiz</span>
+        <span className="expander"></span>
+        {quizState !== "finished" &&
+          <span className="header-score">{qIndex + 1}/{questions.length}</span>
+        }
+      </section>
+      <section className="progress-bar">
+        <div className="progress-fill" style={{width: `${1 + (qIndex / questions.length)*99}%`}}></div>
+      </section>
     </header>
     <main>
       {
         quizState === "finished" ?
         <>
-          <div className="finished">Finished!</div>
+          <div className="finished">Quiz finished! {score}/{questions.length}</div>
         
           <div className="below">
             <button onClick={resetHandler}>Try Again</button>
