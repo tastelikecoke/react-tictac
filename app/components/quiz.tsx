@@ -1,32 +1,16 @@
 import { useState } from "react"
 
-const questions = [
-  {
-    question: "にちの漢字はなんだ？",
-    answer: "日",
-    choices: ["二","日","人"]
-  },
-  {
-    question: "ひとの漢字はなんだ？",
-    answer: "人",
-  },
-  {
-    question: "ひとの漢字はなんだ？",
-    answer: "人",
-    choices: ["人","入","品"]
-  }
-]
-function randomizedQuestion(question: any) {
-  return {
-    ...question,
-    choices: question.choices && question.choices.toSorted((a,b) => Math.random()-0.5),
-  }
+
+export type QuizQuestion = {
+  question: string;
+  answer: string;
+  choices: [string];
 }
 
-export default function Quiz() {
+export default function Quiz({questions}: {questions: [QuizQuestion]}) {
   const[quizState, setQuizState] = useState("question")
   const[selected, setSelected] = useState("")
-  const[question, setQuestion] = useState(randomizedQuestion(questions[0]))
+  const[question, setQuestion] = useState(questions[0])
   const[qIndex, setQIndex] = useState(0)
   const[score, setScore] = useState(0)
   
@@ -48,7 +32,7 @@ export default function Quiz() {
         setQIndex(qIndex + 1)
         setQuizState("question")
         setSelected('')
-        setQuestion(randomizedQuestion(questions[qIndex + 1]))
+        setQuestion(questions[qIndex + 1])
       }
     }
   }
@@ -66,7 +50,7 @@ export default function Quiz() {
     setQIndex(0)
     setQuizState("question")
     setSelected('')
-    setQuestion(randomizedQuestion(questions[0]))
+    setQuestion(questions[0])
     setScore(0)
   }
 
