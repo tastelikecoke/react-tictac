@@ -19,5 +19,5 @@ export default function Page2({loaderData}: Route.ComponentProps) {
     if (loaderData) {
         return <Quiz questions={loaderData}></Quiz>
     }
-    else return <>None</>
+    else return <>Quiz data could not be loaded.</>
 }

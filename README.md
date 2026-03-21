@@ -1,5 +1,10 @@
+# React Tictac
+- Experiments with Reactjs to catch up with the latest technology.
+- Originally just making a tic tac toe clone, but there's a quiz app here now.
+
 # Code Progress
-- Add quiz. 4 hours i guess? 2026-03-21
+- Add full quiz functionality. 4 hours. 2026-03-21
+- Add quiz. 4 hours i guess? 2026-03-20
 - Make a stopwatch component. 27 minutes. 2026-03-11.
 - Add styling for a new page. CSS. 31 minutes 2026-03-10.
 - Added more features and way to detect diagonal wins. 78 minutes 2026-03-09.
