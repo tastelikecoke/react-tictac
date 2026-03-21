@@ -48,9 +48,9 @@ export function Quiz({data}:{data: QuizType}) {
       setSelected(choice)
     }
   }
-  function changeInputHandler(e) {
+  function changeInputHandler(event: React.ChangeEvent<HTMLInputElement>) {
     if (quizState === "question") {
-      setSelected(e.target.value)
+      setSelected((event.target as HTMLInputElement).value)
     }
   }
   function resetHandler() {
@@ -64,7 +64,7 @@ export function Quiz({data}:{data: QuizType}) {
   return <div className="quiz">
     <header>
       <section className="top">
-        <a href="/"><span className="header-text">Quizzes</span></a>
+        <span className="header-text"><a href="/">Quizzes</a></span>
         <span className="header-text">{" / "}</span>
         <span className="header-text">{data.name}</span>
         <span className="expander"></span>
@@ -135,7 +135,7 @@ export function meta({}: Route.MetaArgs) {
 function randomizedQuestion(question: any) {
   return {
     ...question,
-    choices: question.choices && question.choices.toSorted((a,b) => Math.random()-0.5),
+    choices: question.choices && question.choices.toSorted(() => Math.random()-0.5),
   }
 }
 
