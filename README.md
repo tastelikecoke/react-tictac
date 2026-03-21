@@ -3,6 +3,7 @@
 - Originally just making a tic tac toe clone, but there's a quiz app here now.
 
 # Code Progress
+- Deploy to netlify quickly. 1 hour. 2026-03-21
 - Add full quiz functionality. 4 hours. 2026-03-21
 - Add quiz. 4 hours i guess? 2026-03-20
 - Make a stopwatch component. 27 minutes. 2026-03-11.
@@ -16,6 +17,10 @@
 A modern, production-ready template for building full-stack React applications using React Router.
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+
+# React Router Netlify Template
+
+A modern, production-ready template for building full-stack React applications using React Router, deployed to Netlify.
 
 ## Features
 
@@ -53,6 +58,13 @@ Create a production build:
 
 ```bash
 npm run build
+```
+
+## Previewing a Production build
+
+To preview a production build locally, use the Netlify CLI:
+```bash
+npx netlify-cli serve
 ```
 
 ## Deployment
