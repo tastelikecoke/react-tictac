@@ -23,6 +23,8 @@ export default function Quiz() {
   const[quizState, setQuizState] = useState("question")
   const[selected, setSelected] = useState("")
   const[question, setQuestion] = useState(randomizedQuestion(questions[0]))
+  const[qIndex, setQIndex] = useState(0)
+  const[score, setScore] = useState(0)
   
 
   function submitHandler() {
@@ -30,9 +32,16 @@ export default function Quiz() {
       setQuizState("answer")
     }
     else if (quizState === "answer") {
-      setQuizState("question")
-      setSelected('')
-      setQuestion(randomizedQuestion(questions[0]))
+      if (questions.length <= qIndex + 1) {
+        setQuizState("finished")
+        setSelected('')
+      }
+      else {
+        setQIndex(qIndex + 1)
+        setQuizState("question")
+        setSelected('')
+        setQuestion(randomizedQuestion(questions[qIndex + 1]))
+      }
     }
   }
   function selectHandler(choice: string) {
@@ -40,26 +49,47 @@ export default function Quiz() {
       setSelected(choice)
     }
   }
+  function resetHandler(choice: string) {
+    setQIndex(0)
+    setQuizState("question")
+    setSelected('')
+    setQuestion(randomizedQuestion(questions[0]))
+  }
 
   return <div className="quiz">
     <header>
       <span className="header-text">Quiz</span>
     </header>
     <main>
-      <div className="question">
-        {question.question}
-      </div>
-      {question.choices.map(choice =>
-        <div
-          key={choice}
-          className={`choice ${selected === choice ? 'selected':''} ${quizState === 'answer' ? 'answering':''} ${quizState === 'answer' && choice === question.answer ? 'answer':''}`}
-          onClick={() => selectHandler(choice)}>
-          {choice}
-        </div>
-      )}
-      <div className="below">
-        <button onClick={submitHandler}>{ quizState === "question" ? "Submit" : "Next"}</button>
-      </div>
+      {
+        quizState === "finished" ?
+        <>
+          <div className="finished">Finished!</div>
+        
+          <div className="below">
+            <button onClick={resetHandler}>Try Again</button>
+          </div>
+        </>
+        :
+        <>
+          <div className="question">
+            {question.question}
+          </div>
+          {question.choices.map((choice: string) =>
+            <div
+              key={choice}
+              className={`choice ${selected === choice ? 'selected':''} ${quizState === 'answer' ? 'answering':''} ${quizState === 'answer' && choice === question.answer ? 'answer':''}`}
+              onClick={() => selectHandler(choice)}>
+              {choice}
+            </div>
+          )}
+          {selected !== '' && 
+            <div className="below">
+              <button onClick={submitHandler}>{ quizState === "question" ? "Submit" : "Next"}</button>
+            </div>
+          }
+        </>
+      }
     </main>
   </div>
 }

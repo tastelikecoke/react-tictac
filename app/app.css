@@ -67,6 +67,7 @@ body {
 
 .quiz main {
   padding: 40px;
+  padding-bottom: 160px;
   font-family: serif;
   font-size: 40px;
   color: black;
@@ -92,12 +93,12 @@ body {
 }
 .quiz .choice.answering.selected.answer {
   margin-top: 20px;
-  padding: 19px;
-  border: 3px solid #FA8100;
+  padding: 18px;
+  border: 3px solid #fad000;
   background-color: transparent;
   box-shadow:
-    0px 0px 5px 0px #FA8100,
-    inset 0px 0px 5px 0px #FA8100;
+    0px 0px 5px 0px #fad000,
+    inset 0px 0px 5px 0px #fad000;
 }
 .quiz .choice.answer {
   margin-top: 20px;
@@ -106,14 +107,14 @@ body {
 }
 
 .quiz .below {
-  padding-top: 20px;
-  padding-bottom: 20px;
   position: fixed;
   bottom: 0px;
-  width: calc(100% - 80px);
+  left: 0px;
+  width: 100%;
   background-color: white;
   padding: 0px;
   button {
+    margin: 40px;
     margin-bottom: 20px;
     padding: 20px;
     color: #FA8100;
