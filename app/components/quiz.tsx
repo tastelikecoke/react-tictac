@@ -9,13 +9,17 @@ const questions = [
   {
     question: "ひとの漢字はなんだ？",
     answer: "人",
+  },
+  {
+    question: "ひとの漢字はなんだ？",
+    answer: "人",
     choices: ["人","入","品"]
   }
 ]
 function randomizedQuestion(question: any) {
   return {
     ...question,
-    choices: question.choices.toSorted((a,b) => Math.random()-0.5),
+    choices: question.choices && question.choices.toSorted((a,b) => Math.random()-0.5),
   }
 }
 
@@ -53,11 +57,17 @@ export default function Quiz() {
       setSelected(choice)
     }
   }
+  function changeInputHandler(e) {
+    if (quizState === "question") {
+      setSelected(e.target.value)
+    }
+  }
   function resetHandler() {
     setQIndex(0)
     setQuizState("question")
     setSelected('')
     setQuestion(randomizedQuestion(questions[0]))
+    setScore(0)
   }
 
   return <div className="quiz">
@@ -88,7 +98,7 @@ export default function Quiz() {
           <div className="question">
             {question.question}
           </div>
-          {question.choices.map((choice: string) =>
+          {question.choices && question.choices.map((choice: string) =>
             <div
               key={choice}
               className={`choice ${selected === choice ? 'selected':''} ${quizState === 'answer' ? 'answering':''} ${quizState === 'answer' && choice === question.answer ? 'answer':''}`}
@@ -96,6 +106,21 @@ export default function Quiz() {
               {choice}
             </div>
           )}
+          {
+            !question.choices &&
+            <>
+              {
+              quizState === 'question' ?
+                <div className="input-choice">
+                  <input type="text" onChange={changeInputHandler} placeholder="Answer here..."></input>
+                </div>
+              :
+              <div className={`choice answering selected ${quizState === 'answer' && selected === question.answer ? 'answer':''}`}>
+                {selected}
+              </div>
+              }
+            </>
+          }
           {selected !== '' && 
             <div className="below">
               <button onClick={submitHandler}>{ quizState === "question" ? "Submit" : "Next"}</button>

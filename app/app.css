@@ -125,6 +125,14 @@ body {
   padding: 19px;
   border: 3px solid #FA8100;
 }
+.quiz .input-choice {
+  margin-top: 20px;
+  border: 1px solid black;
+}
+.quiz .input-choice input {
+  padding: 20px;
+  width: 100%;
+}
 
 .quiz .below {
   position: fixed;
