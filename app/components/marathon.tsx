@@ -1,13 +1,4 @@
-import type { Route } from "./+types/page1";
-import TicTacToe from "../components/tictactoe";
-import { useState } from "react";
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Page 1" },
-    { name: "description", content: "New Page." },
-  ];
-}
+import { useState } from "react"
 
 function Stopwatch() {
   const [time, setTime] = useState(0);
@@ -39,7 +30,7 @@ function Stopwatch() {
   );
 }
 
-export default function Page1() {
+export default function Marathon() {
   return <div className="oc-card">
     <div className="marathon">
       <p>Erica</p>
@@ -56,4 +47,3 @@ export default function Page1() {
         
   </div>
 }
-

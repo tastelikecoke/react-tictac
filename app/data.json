@@ -1,16 +1,42 @@
 [
-    {
-      "question": "にちの漢字はなんだ？",
-      "answer": "日",
-      "choices": ["二","日","人"]
-    },
-    {
-      "question": "ひとの漢字はなんだ？",
-      "answer": "人"
-    },
-    {
-      "question": "ひとの漢字はなんだ？",
-      "answer": "人",
-      "choices": ["人","入","品"]
-    }
+  {
+    "name": "Quiz 1",
+    "id": "q1",
+    "questions": [
+      {
+        "question": "にちの漢字はなんだ？",
+        "answer": "日",
+        "choices": ["二","日","人"]
+      },
+      {
+        "question": "ひとの漢字はなんだ？",
+        "answer": "人"
+      },
+      {
+        "question": "ひとの漢字はなんだ？",
+        "answer": "人",
+        "choices": ["人","入","品"]
+      }
+    ]
+  },
+  {
+    "name": "Quiz 2",
+    "id": "q2",
+    "questions": [
+      {
+        "question": "にちの漢字はなんだ？",
+        "answer": "日",
+        "choices": ["二","日","人"]
+      },
+      {
+        "question": "ひとの漢字はなんだ？",
+        "answer": "人"
+      },
+      {
+        "question": "ひとの漢字はなんだ？",
+        "answer": "人",
+        "choices": ["人","入","品"]
+      }
+    ]
+  }
 ]

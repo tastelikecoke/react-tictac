@@ -1,13 +1,20 @@
-import { useState } from "react"
-
+import type { Route } from "./+types/quiz";
+import { useState } from "react";
 
 export type QuizQuestion = {
   question: string;
   answer: string;
   choices: [string];
 }
+export type QuizType = {
+  name: string;
+  id: string;
+  questions: [QuizQuestion];
+}
 
-export default function Quiz({questions}: {questions: [QuizQuestion]}) {
+export function Quiz({data}:{data: QuizType}) {
+  const questions = data.questions
+
   const[quizState, setQuizState] = useState("question")
   const[selected, setSelected] = useState("")
   const[question, setQuestion] = useState(questions[0])
@@ -57,7 +64,9 @@ export default function Quiz({questions}: {questions: [QuizQuestion]}) {
   return <div className="quiz">
     <header>
       <section className="top">
-        <span className="header-text">Quiz</span>
+        <a href="/"><span className="header-text">Quizzes</span></a>
+        <span className="header-text">{" / "}</span>
+        <span className="header-text">{data.name}</span>
         <span className="expander"></span>
         {quizState !== "finished" &&
           <span className="header-score">{qIndex + 1}/{questions.length}</span>
@@ -115,3 +124,35 @@ export default function Quiz({questions}: {questions: [QuizQuestion]}) {
     </main>
   </div>
 }
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Quiz" },
+    { name: "description", content: "Starting a quiz." },
+  ];
+}
+
+function randomizedQuestion(question: any) {
+  return {
+    ...question,
+    choices: question.choices && question.choices.toSorted((a,b) => Math.random()-0.5),
+  }
+}
+
+export async function loader({params}: Route.LoaderArgs) {
+  const quizzes = await import("~/data.json");
+  let quiz = quizzes.default.find((q) => q.id == params.name);
+  console.log(quiz)
+  if (quiz) {
+    quiz.questions = quiz.questions.map(q => randomizedQuestion(q));
+    return quiz;
+  }
+}
+
+export default function Page({params, loaderData}: Route.ComponentProps) {
+  if (loaderData) {
+    return <Quiz data={loaderData as unknown as QuizType}></Quiz>
+  }
+  else return <>Quiz data could not be loaded.</>
+}
+
